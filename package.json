@@ -1,0 +1,19 @@
+{
+  "name": "cse-341-project1",
+  "version": "1.0.0",
+  "description": "my first project",
+  "main": "server.js",
+  "scripts": {
+    "test": " "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thomassofttech/cse341-project1.git"
+  },
+  "author": "Moses Thomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thomassofttech/cse341-project1/issues"
+  },
+  "homepage": "https://github.com/Thomassofttech/cse341-project1#readme"
+}
