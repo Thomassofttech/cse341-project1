@@ -1,20 +1,23 @@
-const mongodb = require('../data/database');
+const Contact = require('../model/contact');
 
-const objectId = require('mongodb').ObjectId;
+
 
 const getAll = async (req, res) => {
-const result = await mongodb.getDatabase().collection('contacts').find();
-    result.toArray().then((contacts) => {
+        const contacts = await Contact.find();
         res.status(200).json(contacts);
-    });
+  
 };
 
 const getSingle = async (req, res) => {
-    const contactsId = new objectId(req.params.id);
-    const result = await mongodb.getDatabase().collection('contacts').find({ _id: contactsId });
-    result.toArray().then((contacts) => {
-        res.status(200).json(contacts[0]);
-    });  
+    try {
+        const contact = await Contact.findById(req.params.id);
+        if (!contact) {
+            return res.status(404).json({ message: 'Contact not found' });
+        }
+        res.status(200).json(contact);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
     
     module.exports = {

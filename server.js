@@ -7,13 +7,16 @@ const port = process.env.PORT || 3000;
 
 app.use('/', require('./routes'));
 
-mongodb.initDb((err) => {
-  if (err) {
-    console.log(err);
-  } else {
+const startServer = async () => {
+  try {
+    await mongodb.connectDb();
     app.listen(port, () => {
-      console.log(`Database is running on port ${port}`);
+      console.log(`Server is running on port ${port}`);
     });
+  } catch (error) {
+    console.error('Error starting server:', error);
+    process.exit(1);
   }
-});
+};
 
+startServer();
